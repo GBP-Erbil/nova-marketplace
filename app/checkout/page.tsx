@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-import Link from 'next/link';
 import {
   Check,
   ChevronLeft,
@@ -34,12 +33,12 @@ export default function Page() {
             <strong className="text-gold">#GBP-2026</strong> has been reserved.
             No real payment was processed.
           </p>
-          <Link
+          <a
             href="/home"
             className="mt-8 inline-flex bg-gold px-7 py-4 text-[9px] font-black uppercase tracking-[.2em] text-obsidian"
           >
             Return to salon
-          </Link>
+          </a>
         </div>
       </main>
     );
@@ -47,18 +46,18 @@ export default function Page() {
     <main className="min-h-screen bg-obsidian text-ivory">
       <header className="border-b border-gold/20">
         <div className="mx-auto flex h-20 max-w-[1200px] items-center justify-between px-5 md:px-10">
-          <Link
+          <a
             href="/cart"
             className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-[.16em] text-gold"
           >
             <ChevronLeft size={15} /> Your bag
-          </Link>
-          <Link
+          </a>
+          <a
             href="/"
             className="font-serif text-xl tracking-[.14em] text-gold"
           >
             GBP
-          </Link>
+          </a>
           <span className="flex items-center gap-2 text-[8px] font-bold uppercase tracking-[.16em] text-ivory/35">
             <LockKeyhole size={13} /> Private checkout
           </span>

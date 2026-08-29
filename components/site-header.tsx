@@ -1,5 +1,4 @@
 'use client';
-import Link from 'next/link';
 import { LogOut, Search, ShoppingBag, UserRound } from 'lucide-react';
 import { useShop } from './shop-provider';
 
@@ -10,7 +9,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-gold/15 bg-obsidian/75 text-ivory shadow-[0_14px_45px_rgb(0_0_0/.2)] backdrop-blur-2xl">
       <nav className="mx-auto flex h-20 max-w-[1500px] items-center justify-between px-5 md:px-10">
-        <Link
+        <a
           href={signedIn ? '/home' : '/'}
           className="flex items-center gap-3"
         >
@@ -29,36 +28,36 @@ export function SiteHeader() {
               Global Billionaires Products
             </small>
           </span>
-        </Link>
+        </a>
         <div className="hidden items-center gap-2 rounded-full border border-gold/10 bg-ivory/[.025] p-1.5 text-[10px] font-bold uppercase tracking-[.2em] text-ivory/55 shadow-[inset_0_1px_0_rgb(255_255_255/.06)] backdrop-blur-xl md:flex">
-          <Link
+          <a
             className="rounded-full px-5 py-2.5 hover:bg-ivory/[.05] hover:text-gold"
             href="/home"
           >
             Salon
-          </Link>
-          <Link
+          </a>
+          <a
             className="rounded-full px-5 py-2.5 hover:bg-ivory/[.05] hover:text-gold"
             href="/market"
           >
             Collection
-          </Link>
-          <Link
+          </a>
+          <a
             className="rounded-full px-5 py-2.5 hover:bg-ivory/[.05] hover:text-gold"
             href="/home#journal"
           >
             Journal
-          </Link>
+          </a>
         </div>
         <div className="flex items-center gap-2">
-          <Link
+          <a
             href="/market"
             aria-label="Search products"
             className={iconClass}
           >
             <Search size={16} />
-          </Link>
-          <Link
+          </a>
+          <a
             href="/cart"
             aria-label={`Cart with ${count} items`}
             className={`relative ${iconClass}`}
@@ -69,7 +68,7 @@ export function SiteHeader() {
                 {count}
               </span>
             )}
-          </Link>
+          </a>
           {signedIn ? (
             <button
               onClick={signOut}
@@ -79,9 +78,9 @@ export function SiteHeader() {
               <LogOut size={16} />
             </button>
           ) : (
-            <Link href="/login" aria-label="Sign in" className={iconClass}>
+            <a href="/login" aria-label="Sign in" className={iconClass}>
               <UserRound size={16} />
-            </Link>
+            </a>
           )}
         </div>
       </nav>

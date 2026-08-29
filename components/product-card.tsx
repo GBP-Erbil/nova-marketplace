@@ -1,5 +1,4 @@
 'use client';
-import Link from 'next/link';
 import { Plus } from 'lucide-react';
 import { money, Product } from '@/lib/products';
 import { useShop } from './shop-provider';
@@ -8,7 +7,7 @@ export function ProductCard({ p }: { p: Product }) {
   const { add } = useShop();
   return (
     <article className="group">
-      <Link
+      <a
         href={`/product/${p.id}`}
         className="soft-card relative block aspect-[3/4] border border-gold/15 bg-[#151512] transition duration-500 hover:-translate-y-1 hover:shadow-[0_30px_90px_rgb(0_0_0/.42)]"
       >
@@ -23,14 +22,14 @@ export function ProductCard({ p }: { p: Product }) {
             {p.badge}
           </span>
         )}
-      </Link>
+      </a>
       <div className="mt-3 flex items-start justify-between rounded-[1.5rem] border border-gold/10 bg-ivory/[.025] px-4 py-4 shadow-[inset_0_1px_0_rgb(255_255_255/.05)] backdrop-blur-xl">
-        <Link href={`/product/${p.id}`}>
+        <a href={`/product/${p.id}`}>
           <p className="mb-1 text-[8px] font-bold uppercase tracking-[.22em] text-gold/65">
             {p.category}
           </p>
           <h3 className="font-serif text-xl text-ivory">{p.name}</h3>
-        </Link>
+        </a>
         <div className="flex items-center gap-3">
           <span className="font-serif text-lg text-gold">{money(p.price)}</span>
           <button

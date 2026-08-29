@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { ArrowRight, Crown, Sparkles } from 'lucide-react';
 import { SiteHeader } from '@/components/site-header';
 import { ProductCard } from '@/components/product-card';
@@ -17,12 +16,12 @@ export default function Page() {
             <br />
             <span className="italic text-gold">takes form.</span>
           </h1>
-          <Link
+          <a
             href="/market"
             className="glass-panel flex items-center gap-3 rounded-full px-7 py-4 text-[10px] font-black uppercase tracking-[.2em] text-gold transition hover:-translate-y-0.5"
           >
             View collection <ArrowRight size={16} />
-          </Link>
+          </a>
         </div>
       </section>
       <section className="mx-auto max-w-[1500px] border-x border-gold/10 px-5 pb-24 md:px-10">
@@ -70,12 +69,12 @@ export default function Page() {
               GBP creates conversation pieces for founders, collectors, private
               lounges, and interiors built around conviction.
             </p>
-            <Link
+            <a
               href="/market"
               className="mt-10 flex w-fit items-center gap-2 text-[9px] font-bold uppercase tracking-[.24em] text-gold"
             >
               Explore all pieces <ArrowRight size={14} />
-            </Link>
+            </a>
           </div>
         </div>
       </section>

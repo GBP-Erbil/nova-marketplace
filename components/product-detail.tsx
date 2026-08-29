@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-import Link from 'next/link';
 import {
   Check,
   ChevronLeft,
@@ -26,12 +25,12 @@ export function ProductDetail({ p }: { p: Product }) {
     <main className="min-h-screen bg-obsidian text-ivory">
       <SiteHeader />
       <div className="mx-auto max-w-[1500px] border-x border-gold/10 px-5 py-8 md:px-10">
-        <Link
+        <a
           href="/market"
           className="inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[.18em] text-gold"
         >
           <ChevronLeft size={15} /> Return to collection
-        </Link>
+        </a>
         <div className="mt-8 grid gap-10 lg:grid-cols-[1.08fr_.92fr]">
           <div className="soft-card relative min-h-[720px] overflow-hidden border border-gold/15 bg-[#151512]">
             <img
@@ -115,13 +114,13 @@ export function ProductDetail({ p }: { p: Product }) {
                 )}
               </button>
             </div>
-            <Link
+            <a
               href="/checkout"
               onClick={() => add(p.id, qty)}
               className="glass-panel mt-3 flex h-14 w-full items-center justify-center rounded-full text-[9px] font-bold uppercase tracking-[.2em] text-gold"
             >
               Acquire now
-            </Link>
+            </a>
             <div className="mt-7 grid grid-cols-2 gap-3 text-[9px] uppercase tracking-[.14em] text-ivory/35">
               <div className="glass-panel flex gap-2 rounded-2xl p-4">
                 <Truck className="shrink-0 text-gold" size={17} /> White-glove

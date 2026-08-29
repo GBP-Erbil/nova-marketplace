@@ -1,24 +1,21 @@
 'use client';
-import Link from 'next/link';
 import { ArrowRight, Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { useShop } from './shop-provider';
 export function AuthForm({ mode }: { mode: 'login' | 'signup' }) {
   const [show, setShow] = useState(false);
   const { signIn } = useShop();
-  const router = useRouter();
   const signup = mode === 'signup';
   function submit(e: React.FormEvent) {
     e.preventDefault();
     signIn();
-    router.push('/home');
+    window.location.assign('/home');
   }
   return (
     <div className="min-h-screen bg-obsidian text-ivory">
       <div className="grid min-h-screen lg:grid-cols-2">
         <div className="flex flex-col border-r border-gold/15 px-6 py-7 sm:px-12 lg:px-16">
-          <Link href="/" className="flex items-center gap-3">
+          <a href="/" className="flex items-center gap-3">
             <span className="h-11 w-11 overflow-hidden rounded-full border border-gold/40">
               <img
                 src="/gbp/logo.jpg"
@@ -29,7 +26,7 @@ export function AuthForm({ mode }: { mode: 'login' | 'signup' }) {
             <span className="font-serif text-xl tracking-[.14em] text-gold">
               GBP
             </span>
-          </Link>
+          </a>
           <div className="m-auto w-full max-w-md py-16">
             <p className="mb-4 text-[9px] font-bold uppercase tracking-[.28em] text-gold">
               {signup ? 'Private membership' : 'Member access'}
@@ -99,12 +96,12 @@ export function AuthForm({ mode }: { mode: 'login' | 'signup' }) {
             </form>
             <p className="mt-7 text-center text-xs text-ivory/35">
               {signup ? 'Already a member? ' : 'New to the circle? '}
-              <Link
+              <a
                 className="font-bold text-gold underline underline-offset-4"
                 href={signup ? '/login' : '/signup'}
               >
                 {signup ? 'Sign in' : 'Join GBP'}
-              </Link>
+              </a>
             </p>
             <p className="mt-8 text-center text-[9px] uppercase tracking-[.16em] text-ivory/20">
               Demonstration access · No credentials are stored

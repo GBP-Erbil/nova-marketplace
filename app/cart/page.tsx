@@ -1,5 +1,4 @@
 'use client';
-import Link from 'next/link';
 import { ArrowRight, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react';
 import { SiteHeader } from '@/components/site-header';
 import { useShop } from '@/components/shop-provider';
@@ -25,19 +24,19 @@ export default function Page() {
             <p className="mt-2 text-sm text-ivory/35">
               Discover a piece that speaks before you do.
             </p>
-            <Link
+            <a
               href="/market"
               className="mt-7 inline-flex items-center gap-2 bg-gold px-7 py-4 text-[9px] font-black uppercase tracking-[.2em] text-obsidian"
             >
               Enter collection <ArrowRight size={15} />
-            </Link>
+            </a>
           </div>
         ) : (
           <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_390px]">
             <div className="divide-y divide-gold/15">
               {items.map((p) => (
                 <article key={p.id} className="flex gap-5 py-7 first:pt-0">
-                  <Link
+                  <a
                     href={`/product/${p.id}`}
                     className="soft-card h-40 w-28 shrink-0 border border-gold/15 sm:h-52 sm:w-40"
                   >
@@ -46,7 +45,7 @@ export default function Page() {
                       alt={p.name}
                       className="h-full w-full object-cover"
                     />
-                  </Link>
+                  </a>
                   <div className="flex flex-1 flex-col justify-between py-1">
                     <div className="flex justify-between gap-4">
                       <div>
@@ -108,12 +107,12 @@ export default function Page() {
                 <span>Total</span>
                 <span className="text-gold">{money(subtotal)}</span>
               </div>
-              <Link
+              <a
                 href="/checkout"
                 className="flex h-14 items-center justify-center gap-2 rounded-full bg-gold text-[9px] font-black uppercase tracking-[.2em] text-obsidian shadow-[0_14px_40px_rgb(201_168_91/.18),inset_0_1px_0_rgb(255_255_255/.35)]"
               >
                 Private checkout <ArrowRight size={15} />
-              </Link>
+              </a>
               <p className="mt-4 text-center text-[8px] uppercase tracking-[.15em] text-ivory/25">
                 Taxes confirmed before payment
               </p>
