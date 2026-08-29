@@ -1,3 +1,47 @@
 'use client';
-import Link from 'next/link'; import { Plus } from 'lucide-react'; import { money, Product } from '@/lib/products'; import { useShop } from './shop-provider';
-export function ProductCard({p}:{p:Product}){const {add}=useShop();return <article className="group"><Link href={`/product/${p.id}`} className="relative block aspect-[3/4] overflow-hidden border border-gold/15 bg-[#151512]"><img src={p.image} alt={p.name} className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.035]"/><div className="absolute inset-0 bg-gradient-to-t from-obsidian/70 via-transparent to-transparent"/>{p.badge&&<span className="absolute left-4 top-4 border border-gold/40 bg-obsidian/80 px-3 py-1.5 text-[8px] font-bold uppercase tracking-[.2em] text-gold backdrop-blur">{p.badge}</span>}</Link><div className="flex items-start justify-between border-b border-gold/15 py-5"><Link href={`/product/${p.id}`}><p className="mb-1 text-[8px] font-bold uppercase tracking-[.22em] text-gold/65">{p.category}</p><h3 className="font-serif text-xl text-ivory">{p.name}</h3></Link><div className="flex items-center gap-3"><span className="font-serif text-lg text-gold">{money(p.price)}</span><button onClick={()=>add(p.id)} aria-label={`Add ${p.name} to cart`} className="grid h-9 w-9 place-items-center rounded-full border border-gold/35 text-gold transition hover:bg-gold hover:text-obsidian"><Plus size={16}/></button></div></div></article>}
+import Link from 'next/link';
+import { Plus } from 'lucide-react';
+import { money, Product } from '@/lib/products';
+import { useShop } from './shop-provider';
+
+export function ProductCard({ p }: { p: Product }) {
+  const { add } = useShop();
+  return (
+    <article className="group">
+      <Link
+        href={`/product/${p.id}`}
+        className="soft-card relative block aspect-[3/4] border border-gold/15 bg-[#151512] transition duration-500 hover:-translate-y-1 hover:shadow-[0_30px_90px_rgb(0_0_0/.42)]"
+      >
+        <img
+          src={p.image}
+          alt={p.name}
+          className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.035]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-obsidian/70 via-transparent to-transparent" />
+        {p.badge && (
+          <span className="absolute left-4 top-4 rounded-full border border-gold/35 bg-obsidian/65 px-3 py-2 text-[8px] font-bold uppercase tracking-[.2em] text-gold shadow-[inset_0_1px_0_rgb(255_255_255/.08)] backdrop-blur-2xl">
+            {p.badge}
+          </span>
+        )}
+      </Link>
+      <div className="mt-3 flex items-start justify-between rounded-[1.5rem] border border-gold/10 bg-ivory/[.025] px-4 py-4 shadow-[inset_0_1px_0_rgb(255_255_255/.05)] backdrop-blur-xl">
+        <Link href={`/product/${p.id}`}>
+          <p className="mb-1 text-[8px] font-bold uppercase tracking-[.22em] text-gold/65">
+            {p.category}
+          </p>
+          <h3 className="font-serif text-xl text-ivory">{p.name}</h3>
+        </Link>
+        <div className="flex items-center gap-3">
+          <span className="font-serif text-lg text-gold">{money(p.price)}</span>
+          <button
+            onClick={() => add(p.id)}
+            aria-label={`Add ${p.name} to cart`}
+            className="grid h-9 w-9 place-items-center rounded-full border border-gold/35 bg-gold/[.06] text-gold shadow-[inset_0_1px_0_rgb(255_255_255/.08)] hover:bg-gold hover:text-obsidian"
+          >
+            <Plus size={16} />
+          </button>
+        </div>
+      </div>
+    </article>
+  );
+}

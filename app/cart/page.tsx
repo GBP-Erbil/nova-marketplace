@@ -1,3 +1,126 @@
 'use client';
-import Link from 'next/link'; import { ArrowRight, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react'; import { SiteHeader } from '@/components/site-header'; import { useShop } from '@/components/shop-provider'; import { money,products } from '@/lib/products';
-export default function Page(){const {cart,setQty,count}=useShop();const items=products.filter(p=>cart[p.id]);const subtotal=items.reduce((s,p)=>s+p.price*cart[p.id],0);return <main className="min-h-screen bg-obsidian text-ivory"><SiteHeader/><section className="mx-auto max-w-[1250px] px-5 py-14 md:px-10 md:py-20"><p className="text-[9px] font-bold uppercase tracking-[.28em] text-gold">Selected acquisitions</p><h1 className="mt-3 font-serif text-6xl tracking-[-.05em] md:text-8xl">Your bag <span className="text-gold/35">({count})</span></h1>{!items.length?<div className="mt-12 border border-gold/15 py-24 text-center"><ShoppingBag className="mx-auto text-gold/35" size={36}/><h2 className="mt-5 font-serif text-3xl">Your collection awaits</h2><p className="mt-2 text-sm text-ivory/35">Discover a piece that speaks before you do.</p><Link href="/market" className="mt-7 inline-flex items-center gap-2 bg-gold px-7 py-4 text-[9px] font-black uppercase tracking-[.2em] text-obsidian">Enter collection <ArrowRight size={15}/></Link></div>:<div className="mt-12 grid gap-12 lg:grid-cols-[1fr_390px]"><div className="divide-y divide-gold/15">{items.map(p=><article key={p.id} className="flex gap-5 py-7 first:pt-0"><Link href={`/product/${p.id}`} className="h-40 w-28 shrink-0 overflow-hidden border border-gold/15 sm:h-52 sm:w-40"><img src={p.image} alt={p.name} className="h-full w-full object-cover"/></Link><div className="flex flex-1 flex-col justify-between py-1"><div className="flex justify-between gap-4"><div><p className="text-[8px] font-bold uppercase tracking-[.2em] text-gold/60">{p.category}</p><h2 className="mt-2 font-serif text-xl sm:text-3xl">{p.name}</h2></div><strong className="font-serif text-xl text-gold">{money(p.price*cart[p.id])}</strong></div><div className="flex items-center justify-between"><div className="flex h-10 items-center gap-5 border border-gold/20 px-4"><button onClick={()=>setQty(p.id,cart[p.id]-1)} aria-label="Decrease"><Minus size={13}/></button><span className="font-serif">{cart[p.id]}</span><button onClick={()=>setQty(p.id,cart[p.id]+1)} aria-label="Increase"><Plus size={13}/></button></div><button onClick={()=>setQty(p.id,0)} className="text-ivory/25 hover:text-gold" aria-label={`Remove ${p.name}`}><Trash2 size={17}/></button></div></div></article>)}</div><aside className="h-fit border border-gold/25 bg-forest p-7 lg:sticky lg:top-8"><p className="text-[8px] font-bold uppercase tracking-[.24em] text-gold">Private acquisition</p><h2 className="mt-2 font-serif text-3xl">Order summary</h2><div className="mt-7 space-y-4 border-b border-gold/15 pb-6 text-xs"><div className="flex justify-between text-ivory/45"><span>Collection value</span><span>{money(subtotal)}</span></div><div className="flex justify-between text-ivory/45"><span>White-glove delivery</span><span className="text-gold">Included</span></div></div><div className="flex justify-between py-6 font-serif text-2xl"><span>Total</span><span className="text-gold">{money(subtotal)}</span></div><Link href="/checkout" className="flex h-14 items-center justify-center gap-2 bg-gold text-[9px] font-black uppercase tracking-[.2em] text-obsidian">Private checkout <ArrowRight size={15}/></Link><p className="mt-4 text-center text-[8px] uppercase tracking-[.15em] text-ivory/25">Taxes confirmed before payment</p></aside></div>}</section></main>}
+import Link from 'next/link';
+import { ArrowRight, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react';
+import { SiteHeader } from '@/components/site-header';
+import { useShop } from '@/components/shop-provider';
+import { money, products } from '@/lib/products';
+export default function Page() {
+  const { cart, setQty, count } = useShop();
+  const items = products.filter((p) => cart[p.id]);
+  const subtotal = items.reduce((s, p) => s + p.price * cart[p.id], 0);
+  return (
+    <main className="min-h-screen bg-obsidian text-ivory">
+      <SiteHeader />
+      <section className="mx-auto max-w-[1250px] px-5 py-14 md:px-10 md:py-20">
+        <p className="text-[9px] font-bold uppercase tracking-[.28em] text-gold">
+          Selected acquisitions
+        </p>
+        <h1 className="mt-3 font-serif text-6xl tracking-[-.05em] md:text-8xl">
+          Your bag <span className="text-gold/35">({count})</span>
+        </h1>
+        {!items.length ? (
+          <div className="glass-panel mt-12 rounded-[2rem] py-24 text-center">
+            <ShoppingBag className="mx-auto text-gold/35" size={36} />
+            <h2 className="mt-5 font-serif text-3xl">Your collection awaits</h2>
+            <p className="mt-2 text-sm text-ivory/35">
+              Discover a piece that speaks before you do.
+            </p>
+            <Link
+              href="/market"
+              className="mt-7 inline-flex items-center gap-2 bg-gold px-7 py-4 text-[9px] font-black uppercase tracking-[.2em] text-obsidian"
+            >
+              Enter collection <ArrowRight size={15} />
+            </Link>
+          </div>
+        ) : (
+          <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_390px]">
+            <div className="divide-y divide-gold/15">
+              {items.map((p) => (
+                <article key={p.id} className="flex gap-5 py-7 first:pt-0">
+                  <Link
+                    href={`/product/${p.id}`}
+                    className="soft-card h-40 w-28 shrink-0 border border-gold/15 sm:h-52 sm:w-40"
+                  >
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      className="h-full w-full object-cover"
+                    />
+                  </Link>
+                  <div className="flex flex-1 flex-col justify-between py-1">
+                    <div className="flex justify-between gap-4">
+                      <div>
+                        <p className="text-[8px] font-bold uppercase tracking-[.2em] text-gold/60">
+                          {p.category}
+                        </p>
+                        <h2 className="mt-2 font-serif text-xl sm:text-3xl">
+                          {p.name}
+                        </h2>
+                      </div>
+                      <strong className="font-serif text-xl text-gold">
+                        {money(p.price * cart[p.id])}
+                      </strong>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="glass-panel flex h-10 items-center gap-5 rounded-full px-4">
+                        <button
+                          onClick={() => setQty(p.id, cart[p.id] - 1)}
+                          aria-label="Decrease"
+                        >
+                          <Minus size={13} />
+                        </button>
+                        <span className="font-serif">{cart[p.id]}</span>
+                        <button
+                          onClick={() => setQty(p.id, cart[p.id] + 1)}
+                          aria-label="Increase"
+                        >
+                          <Plus size={13} />
+                        </button>
+                      </div>
+                      <button
+                        onClick={() => setQty(p.id, 0)}
+                        className="text-ivory/25 hover:text-gold"
+                        aria-label={`Remove ${p.name}`}
+                      >
+                        <Trash2 size={17} />
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <aside className="glass-panel h-fit rounded-[2rem] bg-forest/65 p-7 lg:sticky lg:top-28">
+              <p className="text-[8px] font-bold uppercase tracking-[.24em] text-gold">
+                Private acquisition
+              </p>
+              <h2 className="mt-2 font-serif text-3xl">Order summary</h2>
+              <div className="mt-7 space-y-4 border-b border-gold/15 pb-6 text-xs">
+                <div className="flex justify-between text-ivory/45">
+                  <span>Collection value</span>
+                  <span>{money(subtotal)}</span>
+                </div>
+                <div className="flex justify-between text-ivory/45">
+                  <span>White-glove delivery</span>
+                  <span className="text-gold">Included</span>
+                </div>
+              </div>
+              <div className="flex justify-between py-6 font-serif text-2xl">
+                <span>Total</span>
+                <span className="text-gold">{money(subtotal)}</span>
+              </div>
+              <Link
+                href="/checkout"
+                className="flex h-14 items-center justify-center gap-2 rounded-full bg-gold text-[9px] font-black uppercase tracking-[.2em] text-obsidian shadow-[0_14px_40px_rgb(201_168_91/.18),inset_0_1px_0_rgb(255_255_255/.35)]"
+              >
+                Private checkout <ArrowRight size={15} />
+              </Link>
+              <p className="mt-4 text-center text-[8px] uppercase tracking-[.15em] text-ivory/25">
+                Taxes confirmed before payment
+              </p>
+            </aside>
+          </div>
+        )}
+      </section>
+    </main>
+  );
+}

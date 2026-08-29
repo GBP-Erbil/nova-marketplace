@@ -1,3 +1,133 @@
 'use client';
-import Link from 'next/link'; import { ArrowRight, Eye, EyeOff } from 'lucide-react'; import { useState } from 'react'; import { useRouter } from 'next/navigation'; import { useShop } from './shop-provider';
-export function AuthForm({mode}:{mode:'login'|'signup'}){const [show,setShow]=useState(false);const {signIn}=useShop();const router=useRouter();const signup=mode==='signup';function submit(e:React.FormEvent){e.preventDefault();signIn();router.push('/home')}return <div className="min-h-screen bg-obsidian text-ivory"><div className="grid min-h-screen lg:grid-cols-2"><div className="flex flex-col border-r border-gold/15 px-6 py-7 sm:px-12 lg:px-16"><Link href="/" className="flex items-center gap-3"><span className="h-11 w-11 overflow-hidden rounded-full border border-gold/40"><img src="/gbp/logo.jpg" alt="GBP" className="h-full w-full scale-[2.6] object-cover"/></span><span className="font-serif text-xl tracking-[.14em] text-gold">GBP</span></Link><div className="m-auto w-full max-w-md py-16"><p className="mb-4 text-[9px] font-bold uppercase tracking-[.28em] text-gold">{signup?'Private membership':'Member access'}</p><h1 className="font-serif text-5xl tracking-[-.045em] md:text-6xl">{signup?'Join the circle':'Welcome back'}</h1><p className="mt-4 text-sm leading-6 text-ivory/40">{signup?'Receive private releases, collection previews, and priority access.':'Enter the GBP private salon.'}</p><form onSubmit={submit} className="mt-10 space-y-5">{signup&&<label className="block text-[9px] font-bold uppercase tracking-[.18em] text-gold">Full name<input required placeholder="Your name" className="mt-2 h-14 w-full border border-gold/20 bg-ivory/[.03] px-4 text-sm font-normal normal-case tracking-normal text-ivory outline-none focus:border-gold"/></label>}<label className="block text-[9px] font-bold uppercase tracking-[.18em] text-gold">Email address<input required type="email" placeholder="you@example.com" className="mt-2 h-14 w-full border border-gold/20 bg-ivory/[.03] px-4 text-sm font-normal normal-case tracking-normal text-ivory outline-none focus:border-gold"/></label><label className="block text-[9px] font-bold uppercase tracking-[.18em] text-gold">Password<div className="relative mt-2"><input required minLength={6} type={show?'text':'password'} placeholder="Minimum 6 characters" className="h-14 w-full border border-gold/20 bg-ivory/[.03] px-4 pr-12 text-sm font-normal normal-case tracking-normal text-ivory outline-none focus:border-gold"/><button type="button" onClick={()=>setShow(!show)} aria-label={show?'Hide password':'Show password'} className="absolute right-4 top-1/2 -translate-y-1/2 text-gold">{show?<EyeOff size={17}/>:<Eye size={17}/>}</button></div></label>{signup&&<label className="flex gap-3 text-xs leading-5 text-ivory/40"><input required type="checkbox" className="mt-1 accent-[#c9a85b]"/>I accept the membership terms and privacy policy.</label>}<button className="flex h-14 w-full items-center justify-center gap-3 bg-gold text-[10px] font-black uppercase tracking-[.2em] text-obsidian">{signup?'Request access':'Enter GBP'} <ArrowRight size={16}/></button></form><p className="mt-7 text-center text-xs text-ivory/35">{signup?'Already a member? ':'New to the circle? '}<Link className="font-bold text-gold underline underline-offset-4" href={signup?'/login':'/signup'}>{signup?'Sign in':'Join GBP'}</Link></p><p className="mt-8 text-center text-[9px] uppercase tracking-[.16em] text-ivory/20">Demonstration access · No credentials are stored</p></div></div><div className="relative hidden overflow-hidden lg:block"><img src="/gbp/three-piece.jpg" alt="GBP Sovereign III currency display" className="h-full w-full object-cover opacity-75"/><div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian/25"/><div className="absolute inset-x-10 bottom-10 border-t border-gold/40 pt-7"><p className="font-serif text-4xl italic text-gold">“Wealth is a language.”</p><p className="mt-4 text-[9px] uppercase tracking-[.24em] text-ivory/45">Global Billionaires Products</p></div></div></div></div>}
+import Link from 'next/link';
+import { ArrowRight, Eye, EyeOff } from 'lucide-react';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useShop } from './shop-provider';
+export function AuthForm({ mode }: { mode: 'login' | 'signup' }) {
+  const [show, setShow] = useState(false);
+  const { signIn } = useShop();
+  const router = useRouter();
+  const signup = mode === 'signup';
+  function submit(e: React.FormEvent) {
+    e.preventDefault();
+    signIn();
+    router.push('/home');
+  }
+  return (
+    <div className="min-h-screen bg-obsidian text-ivory">
+      <div className="grid min-h-screen lg:grid-cols-2">
+        <div className="flex flex-col border-r border-gold/15 px-6 py-7 sm:px-12 lg:px-16">
+          <Link href="/" className="flex items-center gap-3">
+            <span className="h-11 w-11 overflow-hidden rounded-full border border-gold/40">
+              <img
+                src="/gbp/logo.jpg"
+                alt="GBP"
+                className="h-full w-full scale-[2.6] object-cover"
+              />
+            </span>
+            <span className="font-serif text-xl tracking-[.14em] text-gold">
+              GBP
+            </span>
+          </Link>
+          <div className="m-auto w-full max-w-md py-16">
+            <p className="mb-4 text-[9px] font-bold uppercase tracking-[.28em] text-gold">
+              {signup ? 'Private membership' : 'Member access'}
+            </p>
+            <h1 className="font-serif text-5xl tracking-[-.045em] md:text-6xl">
+              {signup ? 'Join the circle' : 'Welcome back'}
+            </h1>
+            <p className="mt-4 text-sm leading-6 text-ivory/40">
+              {signup
+                ? 'Receive private releases, collection previews, and priority access.'
+                : 'Enter the GBP private salon.'}
+            </p>
+            <form onSubmit={submit} className="mt-10 space-y-5">
+              {signup && (
+                <label className="block text-[9px] font-bold uppercase tracking-[.18em] text-gold">
+                  Full name
+                  <input
+                    required
+                    placeholder="Your name"
+                    className="glass-panel mt-2 h-14 w-full rounded-2xl px-4 text-sm font-normal normal-case tracking-normal text-ivory outline-none focus:border-gold"
+                  />
+                </label>
+              )}
+              <label className="block text-[9px] font-bold uppercase tracking-[.18em] text-gold">
+                Email address
+                <input
+                  required
+                  type="email"
+                  placeholder="you@example.com"
+                  className="glass-panel mt-2 h-14 w-full rounded-2xl px-4 text-sm font-normal normal-case tracking-normal text-ivory outline-none focus:border-gold"
+                />
+              </label>
+              <label className="block text-[9px] font-bold uppercase tracking-[.18em] text-gold">
+                Password
+                <div className="relative mt-2">
+                  <input
+                    required
+                    minLength={6}
+                    type={show ? 'text' : 'password'}
+                    placeholder="Minimum 6 characters"
+                    className="glass-panel h-14 w-full rounded-2xl px-4 pr-12 text-sm font-normal normal-case tracking-normal text-ivory outline-none focus:border-gold"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShow(!show)}
+                    aria-label={show ? 'Hide password' : 'Show password'}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gold"
+                  >
+                    {show ? <EyeOff size={17} /> : <Eye size={17} />}
+                  </button>
+                </div>
+              </label>
+              {signup && (
+                <label className="flex gap-3 text-xs leading-5 text-ivory/40">
+                  <input
+                    required
+                    type="checkbox"
+                    className="mt-1 accent-[#c9a85b]"
+                  />
+                  I accept the membership terms and privacy policy.
+                </label>
+              )}
+              <button className="flex h-14 w-full items-center justify-center gap-3 rounded-full bg-gold text-[10px] font-black uppercase tracking-[.2em] text-obsidian shadow-[0_14px_40px_rgb(201_168_91/.18),inset_0_1px_0_rgb(255_255_255/.35)]">
+                {signup ? 'Request access' : 'Enter GBP'}{' '}
+                <ArrowRight size={16} />
+              </button>
+            </form>
+            <p className="mt-7 text-center text-xs text-ivory/35">
+              {signup ? 'Already a member? ' : 'New to the circle? '}
+              <Link
+                className="font-bold text-gold underline underline-offset-4"
+                href={signup ? '/login' : '/signup'}
+              >
+                {signup ? 'Sign in' : 'Join GBP'}
+              </Link>
+            </p>
+            <p className="mt-8 text-center text-[9px] uppercase tracking-[.16em] text-ivory/20">
+              Demonstration access · No credentials are stored
+            </p>
+          </div>
+        </div>
+        <div className="soft-card relative m-4 hidden overflow-hidden lg:block">
+          <img
+            src="/gbp/three-piece.jpg"
+            alt="GBP Sovereign III currency display"
+            className="h-full w-full object-cover opacity-75"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian/25" />
+          <div className="absolute inset-x-10 bottom-10 border-t border-gold/40 pt-7">
+            <p className="font-serif text-4xl italic text-gold">
+              “Wealth is a language.”
+            </p>
+            <p className="mt-4 text-[9px] uppercase tracking-[.24em] text-ivory/45">
+              Global Billionaires Products
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

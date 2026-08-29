@@ -1,3 +1,140 @@
 'use client';
-import { useState } from 'react'; import Link from 'next/link'; import { Check, ChevronLeft, Minus, Plus, ShieldCheck, ShoppingBag, Truck } from 'lucide-react'; import { Product, money } from '@/lib/products'; import { useShop } from './shop-provider'; import { SiteHeader } from './site-header';
-export function ProductDetail({p}:{p:Product}){const [qty,setQty]=useState(1);const [added,setAdded]=useState(false);const {add}=useShop();function handle(){add(p.id,qty);setAdded(true);setTimeout(()=>setAdded(false),1800)}return <main className="min-h-screen bg-obsidian text-ivory"><SiteHeader/><div className="mx-auto max-w-[1500px] border-x border-gold/10 px-5 py-8 md:px-10"><Link href="/market" className="inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[.18em] text-gold"><ChevronLeft size={15}/> Return to collection</Link><div className="mt-8 grid gap-10 lg:grid-cols-[1.08fr_.92fr]"><div className="relative min-h-[720px] overflow-hidden border border-gold/15 bg-[#151512]"><img src={p.image} alt={p.name} className="absolute inset-0 h-full w-full object-cover"/><div className="absolute inset-0 bg-gradient-to-t from-obsidian/55 via-transparent to-obsidian/20"/><span className="absolute left-5 top-5 border border-gold/35 bg-obsidian/75 px-3 py-2 text-[8px] font-bold uppercase tracking-[.2em] text-gold backdrop-blur">GBP Certified Edition</span></div><div className="lg:sticky lg:top-8 lg:self-start lg:px-8 lg:py-8"><div className="flex items-center justify-between"><p className="text-[9px] font-bold uppercase tracking-[.24em] text-gold">{p.category}</p>{p.badge&&<span className="border border-gold/30 px-3 py-1.5 text-[8px] font-black uppercase tracking-[.16em] text-gold">{p.badge}</span>}</div><h1 className="mt-5 font-serif text-6xl leading-[.9] tracking-[-.045em] md:text-8xl">{p.name}</h1><p className="mt-6 font-serif text-3xl text-gold">{money(p.price)}</p><p className="mt-8 max-w-xl text-base leading-8 text-ivory/45">{p.description}</p><div className="mt-9 border-y border-gold/15 py-6"><div className="flex justify-between text-xs"><span className="uppercase tracking-[.16em] text-ivory/30">Construction</span><span className="max-w-[60%] text-right text-ivory/70">{p.material}</span></div><div className="mt-5 flex justify-between text-xs"><span className="uppercase tracking-[.16em] text-ivory/30">Availability</span><span className="flex items-center gap-2 font-bold text-gold"><span className="h-1.5 w-1.5 rounded-full bg-gold"/>Only {p.stock} available</span></div></div><div className="mt-8 flex flex-col gap-3 sm:flex-row"><div className="flex h-14 items-center justify-between border border-gold/25 px-5 sm:w-36"><button onClick={()=>setQty(Math.max(1,qty-1))} aria-label="Decrease quantity"><Minus size={16}/></button><span className="font-serif text-lg">{qty}</span><button onClick={()=>setQty(Math.min(p.stock,qty+1))} aria-label="Increase quantity"><Plus size={16}/></button></div><button onClick={handle} className="flex h-14 flex-1 items-center justify-center gap-3 bg-gold text-[9px] font-black uppercase tracking-[.2em] text-obsidian">{added?<><Check size={16}/> Added to collection</>:<><ShoppingBag size={16}/> Add to bag · {money(p.price*qty)}</>}</button></div><Link href="/checkout" onClick={()=>add(p.id,qty)} className="mt-3 flex h-14 w-full items-center justify-center border border-gold/35 text-[9px] font-bold uppercase tracking-[.2em] text-gold">Acquire now</Link><div className="mt-7 grid grid-cols-2 gap-3 text-[9px] uppercase tracking-[.14em] text-ivory/35"><div className="flex gap-2 border border-gold/10 p-4"><Truck className="shrink-0 text-gold" size={17}/> White-glove delivery</div><div className="flex gap-2 border border-gold/10 p-4"><ShieldCheck className="shrink-0 text-gold" size={17}/> Secure purchase</div></div></div></div></div></main>}
+import { useState } from 'react';
+import Link from 'next/link';
+import {
+  Check,
+  ChevronLeft,
+  Minus,
+  Plus,
+  ShieldCheck,
+  ShoppingBag,
+  Truck,
+} from 'lucide-react';
+import { Product, money } from '@/lib/products';
+import { useShop } from './shop-provider';
+import { SiteHeader } from './site-header';
+export function ProductDetail({ p }: { p: Product }) {
+  const [qty, setQty] = useState(1);
+  const [added, setAdded] = useState(false);
+  const { add } = useShop();
+  function handle() {
+    add(p.id, qty);
+    setAdded(true);
+    setTimeout(() => setAdded(false), 1800);
+  }
+  return (
+    <main className="min-h-screen bg-obsidian text-ivory">
+      <SiteHeader />
+      <div className="mx-auto max-w-[1500px] border-x border-gold/10 px-5 py-8 md:px-10">
+        <Link
+          href="/market"
+          className="inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[.18em] text-gold"
+        >
+          <ChevronLeft size={15} /> Return to collection
+        </Link>
+        <div className="mt-8 grid gap-10 lg:grid-cols-[1.08fr_.92fr]">
+          <div className="soft-card relative min-h-[720px] overflow-hidden border border-gold/15 bg-[#151512]">
+            <img
+              src={p.image}
+              alt={p.name}
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-obsidian/55 via-transparent to-obsidian/20" />
+            <span className="absolute left-5 top-5 rounded-full border border-gold/35 bg-obsidian/65 px-4 py-2 text-[8px] font-bold uppercase tracking-[.2em] text-gold shadow-[inset_0_1px_0_rgb(255_255_255/.08)] backdrop-blur-2xl">
+              GBP Certified Edition
+            </span>
+          </div>
+          <div className="lg:sticky lg:top-28 lg:self-start lg:px-8 lg:py-8">
+            <div className="flex items-center justify-between">
+              <p className="text-[9px] font-bold uppercase tracking-[.24em] text-gold">
+                {p.category}
+              </p>
+              {p.badge && (
+                <span className="rounded-full border border-gold/30 bg-gold/[.05] px-3 py-1.5 text-[8px] font-black uppercase tracking-[.16em] text-gold backdrop-blur-xl">
+                  {p.badge}
+                </span>
+              )}
+            </div>
+            <h1 className="mt-5 font-serif text-6xl leading-[.9] tracking-[-.045em] md:text-8xl">
+              {p.name}
+            </h1>
+            <p className="mt-6 font-serif text-3xl text-gold">
+              {money(p.price)}
+            </p>
+            <p className="mt-8 max-w-xl text-base leading-8 text-ivory/45">
+              {p.description}
+            </p>
+            <div className="mt-9 border-y border-gold/15 py-6">
+              <div className="flex justify-between text-xs">
+                <span className="uppercase tracking-[.16em] text-ivory/30">
+                  Construction
+                </span>
+                <span className="max-w-[60%] text-right text-ivory/70">
+                  {p.material}
+                </span>
+              </div>
+              <div className="mt-5 flex justify-between text-xs">
+                <span className="uppercase tracking-[.16em] text-ivory/30">
+                  Availability
+                </span>
+                <span className="flex items-center gap-2 font-bold text-gold">
+                  <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+                  Only {p.stock} available
+                </span>
+              </div>
+            </div>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="glass-panel flex h-14 items-center justify-between rounded-full px-5 sm:w-36">
+                <button
+                  onClick={() => setQty(Math.max(1, qty - 1))}
+                  aria-label="Decrease quantity"
+                >
+                  <Minus size={16} />
+                </button>
+                <span className="font-serif text-lg">{qty}</span>
+                <button
+                  onClick={() => setQty(Math.min(p.stock, qty + 1))}
+                  aria-label="Increase quantity"
+                >
+                  <Plus size={16} />
+                </button>
+              </div>
+              <button
+                onClick={handle}
+                className="flex h-14 flex-1 items-center justify-center gap-3 rounded-full bg-gold text-[9px] font-black uppercase tracking-[.2em] text-obsidian shadow-[0_14px_40px_rgb(201_168_91/.18),inset_0_1px_0_rgb(255_255_255/.35)]"
+              >
+                {added ? (
+                  <>
+                    <Check size={16} /> Added to collection
+                  </>
+                ) : (
+                  <>
+                    <ShoppingBag size={16} /> Add to bag ·{' '}
+                    {money(p.price * qty)}
+                  </>
+                )}
+              </button>
+            </div>
+            <Link
+              href="/checkout"
+              onClick={() => add(p.id, qty)}
+              className="glass-panel mt-3 flex h-14 w-full items-center justify-center rounded-full text-[9px] font-bold uppercase tracking-[.2em] text-gold"
+            >
+              Acquire now
+            </Link>
+            <div className="mt-7 grid grid-cols-2 gap-3 text-[9px] uppercase tracking-[.14em] text-ivory/35">
+              <div className="glass-panel flex gap-2 rounded-2xl p-4">
+                <Truck className="shrink-0 text-gold" size={17} /> White-glove
+                delivery
+              </div>
+              <div className="glass-panel flex gap-2 rounded-2xl p-4">
+                <ShieldCheck className="shrink-0 text-gold" size={17} /> Secure
+                purchase
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}

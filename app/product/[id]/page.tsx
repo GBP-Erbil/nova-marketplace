@@ -1,4 +1,41 @@
-import { notFound } from 'next/navigation'; import { products } from '@/lib/products'; import { ProductDetail } from '@/components/product-detail';
-export function generateStaticParams(){return products.map(p=>({id:p.id}))}
-export async function generateMetadata({params}:{params:Promise<{id:string}>}){const {id}=await params;const p=products.find(x=>x.id===id);return p?{title:`${p.name} — GBP`,description:p.description,openGraph:{title:`${p.name} — GBP`,description:p.description,images:[p.image]},twitter:{card:'summary_large_image',title:`${p.name} — GBP`,description:p.description,images:[p.image]}}:{title:'Piece not found — GBP'}}
-export default async function Page({params}:{params:Promise<{id:string}>}){const {id}=await params;const p=products.find(x=>x.id===id);if(!p)notFound();return <ProductDetail p={p}/>}
+import { notFound } from 'next/navigation';
+import { products } from '@/lib/products';
+import { ProductDetail } from '@/components/product-detail';
+export function generateStaticParams() {
+  return products.map((p) => ({ id: p.id }));
+}
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const p = products.find((x) => x.id === id);
+  return p
+    ? {
+        title: `${p.name} — GBP`,
+        description: p.description,
+        openGraph: {
+          title: `${p.name} — GBP`,
+          description: p.description,
+          images: [p.image],
+        },
+        twitter: {
+          card: 'summary_large_image',
+          title: `${p.name} — GBP`,
+          description: p.description,
+          images: [p.image],
+        },
+      }
+    : { title: 'Piece not found — GBP' };
+}
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const p = products.find((x) => x.id === id);
+  if (!p) notFound();
+  return <ProductDetail p={p} />;
+}
