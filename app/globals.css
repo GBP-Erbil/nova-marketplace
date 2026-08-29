@@ -53,20 +53,20 @@ body {
 }
 
 :root {
-  --background: #f2efe7;
-  --foreground: #161714;
+  --background: #0b0c0a;
+  --foreground: #f4eedf;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #161714;
-  --primary-foreground: #f2efe7;
+  --primary: #c9a85b;
+  --primary-foreground: #0b0c0a;
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: #d8ff53;
-  --accent-foreground: #161714;
+  --accent: #c9a85b;
+  --accent-foreground: #0b0c0a;
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
@@ -88,13 +88,18 @@ body {
 }
 
 @theme inline {
-  --color-ink: #161714;
-  --color-cream: #f2efe7;
-  --color-lime: #d8ff53;
+  --color-ink: #0b0c0a;
+  --color-cream: #f4eedf;
+  --color-lime: #c9a85b;
+  --color-obsidian: #0b0c0a;
+  --color-ivory: #f4eedf;
+  --color-gold: #c9a85b;
+  --color-forest: #0e211a;
 }
 
 html { scroll-behavior: smooth; }
 button, a { -webkit-tap-highlight-color: transparent; }
+::selection { background: #c9a85b; color: #0b0c0a; }
 
 .dark {
   --background: oklch(0.145 0 0);

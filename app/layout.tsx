@@ -15,14 +15,14 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL ?? 'http://localhost:3000'),
-  title: 'NOVA — Considered objects for modern living',
-  description: 'A curated marketplace for independent design, honest materials, and beautifully useful objects.',
+  title: 'GBP — Global Billionaires Products',
+  description: 'Limited-edition statement displays created for powerful interiors, private lounges, and collectors.',
   openGraph: {
-    title: 'NOVA — Considered objects for modern living',
-    description: 'Less, but better. Discover beautifully useful objects built to stay.',
-    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'NOVA — Less, but better.' }],
+    title: 'GBP — Global Billionaires Products',
+    description: 'Own the symbol. Limited statement pieces for rooms built around ambition.',
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'GBP — Global Billionaires Products' }],
   },
-  twitter: { card: 'summary_large_image', title: 'NOVA — Considered objects for modern living', description: 'Less, but better. Discover beautifully useful objects built to stay.', images: ['/og.png'] },
+  twitter: { card: 'summary_large_image', title: 'GBP — Global Billionaires Products', description: 'Own the symbol. Limited statement pieces for rooms built around ambition.', images: ['/og.png'] },
 };
 
 export default function RootLayout({

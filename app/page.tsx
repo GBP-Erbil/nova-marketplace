@@ -1,42 +1,34 @@
 import Link from 'next/link';
-import { ArrowUpRight, Menu, ShoppingBag } from 'lucide-react';
+import { ArrowUpRight, Crown, Gem, ShieldCheck, ShoppingBag } from 'lucide-react';
 
 export default function LandingPage() {
   return (
-    <main className="min-h-screen bg-ink text-cream">
-      <nav className="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-6 md:px-10">
-        <Link href="/" className="text-xl font-black tracking-[-.06em]">NOVA/</Link>
-        <div className="hidden items-center gap-8 text-sm text-cream/70 md:flex">
-          <Link href="/market">Market</Link><a href="#story">Our story</a><a href="#news">Journal</a>
-        </div>
-        <div className="flex items-center gap-3">
-          <Link href="/login" className="hidden text-sm font-medium sm:block">Sign in</Link>
-          <Link href="/signup" className="rounded-full bg-lime px-5 py-2.5 text-sm font-bold text-ink">Join NOVA</Link>
-          <button aria-label="Open menu" className="md:hidden"><Menu size={20}/></button>
-        </div>
+    <main className="min-h-screen bg-obsidian text-ivory">
+      <nav className="mx-auto flex max-w-[1500px] items-center justify-between border-b border-gold/20 px-5 py-5 md:px-10">
+        <Link href="/" className="flex items-center gap-3">
+          <span className="relative grid h-11 w-11 overflow-hidden rounded-full border border-gold/40 bg-stone-500"><img src="/gbp/logo.jpg" alt="GBP logo" className="h-full w-full scale-[2.6] object-cover"/></span>
+          <span><strong className="block font-serif text-xl tracking-[.13em] text-gold">GBP</strong><small className="hidden text-[8px] uppercase tracking-[.24em] text-ivory/45 sm:block">Global Billionaires Products</small></span>
+        </Link>
+        <div className="hidden items-center gap-9 text-[11px] font-semibold uppercase tracking-[.18em] text-ivory/60 md:flex"><Link href="/market">The collection</Link><a href="#legacy">Our legacy</a><a href="#concierge">Concierge</a></div>
+        <div className="flex items-center gap-3"><Link href="/login" className="hidden text-xs font-bold uppercase tracking-[.14em] sm:block">Private access</Link><Link href="/market" className="grid h-11 w-11 place-items-center rounded-full border border-gold/30 text-gold"><ShoppingBag size={17}/></Link></div>
       </nav>
 
-      <section className="mx-auto grid max-w-[1440px] gap-8 px-5 pb-8 pt-10 md:grid-cols-[1.02fr_.98fr] md:px-10 md:pb-12 md:pt-20">
-        <div className="flex flex-col justify-between">
-          <div>
-            <p className="mb-6 text-xs font-bold uppercase tracking-[.2em] text-lime">Curated objects · Edition 01</p>
-            <h1 className="max-w-[760px] text-[clamp(4.6rem,9.2vw,9.5rem)] font-black leading-[.78] tracking-[-.08em]">LESS,<br/>BUT <span className="font-serif font-normal italic text-lime">better.</span></h1>
-            <p className="mt-9 max-w-md text-base leading-7 text-cream/60">A considered marketplace for beautifully useful things. Independent design, honest materials, and objects built to stay.</p>
-          </div>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <Link href="/market" className="flex items-center gap-3 rounded-full bg-cream px-6 py-3.5 font-bold text-ink">Explore the market <ArrowUpRight size={18}/></Link>
-            <Link href="/signup" className="rounded-full border border-cream/20 px-6 py-3.5 font-semibold">Create account</Link>
-          </div>
+      <section className="relative mx-auto grid min-h-[calc(100vh-86px)] max-w-[1500px] overflow-hidden lg:grid-cols-[.9fr_1.1fr]">
+        <div className="relative z-10 flex flex-col justify-center px-6 py-20 md:px-12 lg:py-24">
+          <div className="mb-8 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[.3em] text-gold"><span className="h-px w-10 bg-gold"/> Private Collection · 2026</div>
+          <h1 className="font-serif text-[clamp(4.2rem,8vw,9.2rem)] leading-[.82] tracking-[-.055em]">Own the<br/><span className="italic text-gold">symbol.</span></h1>
+          <p className="mt-8 max-w-lg text-base leading-7 text-ivory/50">Statement displays for those who understand that wealth is more than currency—it is presence, discipline, and legacy.</p>
+          <div className="mt-10 flex flex-wrap gap-3"><Link href="/market" className="flex items-center gap-3 bg-gold px-7 py-4 text-xs font-black uppercase tracking-[.16em] text-obsidian">Enter collection <ArrowUpRight size={17}/></Link><Link href="/signup" className="border border-ivory/20 px-7 py-4 text-xs font-bold uppercase tracking-[.16em]">Join the private list</Link></div>
+          <div className="mt-14 grid max-w-lg grid-cols-3 gap-3 border-t border-gold/15 pt-7 text-center"><div><Crown className="mx-auto mb-2 text-gold" size={18}/><span className="text-[9px] uppercase tracking-[.18em] text-ivory/40">Limited editions</span></div><div><Gem className="mx-auto mb-2 text-gold" size={18}/><span className="text-[9px] uppercase tracking-[.18em] text-ivory/40">Collector grade</span></div><div><ShieldCheck className="mx-auto mb-2 text-gold" size={18}/><span className="text-[9px] uppercase tracking-[.18em] text-ivory/40">Secure checkout</span></div></div>
         </div>
-        <Link href="/product/arc-lamp" className="group relative min-h-[520px] overflow-hidden rounded-[2rem] bg-[#d7cfbf] md:min-h-[650px]">
-          <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=1400&q=90" alt="Sculptural Arc table lamp" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"/>
-          <div className="absolute inset-x-5 bottom-5 flex items-end justify-between rounded-[1.35rem] bg-ink/90 p-5 backdrop-blur md:inset-x-7 md:bottom-7">
-            <div><p className="text-xs uppercase tracking-[.16em] text-cream/50">Object 001</p><h2 className="mt-1 text-xl font-bold">Arc Table Lamp</h2></div>
-            <div className="flex items-center gap-4"><span className="text-lg font-bold">$189</span><span className="grid h-11 w-11 place-items-center rounded-full bg-lime text-ink"><ShoppingBag size={18}/></span></div>
-          </div>
+        <Link href="/product/three-tier-currency" className="group relative min-h-[620px] overflow-hidden border-l border-gold/15 bg-[#171611]">
+          <img src="/gbp/three-piece.jpg" alt="GBP three tier currency display" className="absolute inset-0 h-full w-full object-cover opacity-80 transition duration-1000 group-hover:scale-[1.025] group-hover:opacity-95"/>
+          <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian/30"/>
+          <div className="absolute left-6 top-6 border border-gold/40 bg-obsidian/75 px-4 py-2 text-[9px] font-bold uppercase tracking-[.22em] text-gold backdrop-blur">GBP Signature</div>
+          <div className="absolute inset-x-7 bottom-8 flex items-end justify-between border-t border-gold/40 pt-5"><div><p className="text-[9px] uppercase tracking-[.24em] text-gold">Edition 003</p><h2 className="mt-2 font-serif text-3xl">The Sovereign III</h2></div><span className="font-serif text-2xl text-gold">$1,250</span></div>
         </Link>
       </section>
-      <div className="border-y border-cream/10 py-4 text-center text-xs font-bold uppercase tracking-[.26em] text-cream/50">Free delivery over $150 · 30 day returns · Secure FIB checkout</div>
+      <div className="border-y border-gold/20 bg-forest py-4 text-center text-[9px] font-bold uppercase tracking-[.32em] text-gold">Global Billionaires Products · Designed for the rooms that decide the future</div>
     </main>
   );
 }
